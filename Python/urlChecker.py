@@ -1,7 +1,7 @@
 import requests
 
 class urlChecker:
-    def main(msg,APIkey,APIhost):
+    async def main(msg,APIkey,APIhost):
         Data = {
             "APIkey": APIkey,
             "Function": "et",
@@ -15,8 +15,10 @@ class urlChecker:
         if Json["response"] == "No URL found": return
         if Json["state"] == "Success":
             if Json["response"] == "All URL inspections passed":
-                print("文本中沒有危險網址")
+                await msg.add_reaction("✅")
             else:
-                print("文本中含有危險網址")
+                await msg.add_reaction("❌")
+                await msg.reply("文本中含有危險網址")
+                await msg.delete()
         else:
             print("錯誤: {}".format(Json["response"]))
