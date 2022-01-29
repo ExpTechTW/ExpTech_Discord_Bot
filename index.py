@@ -1,9 +1,9 @@
-ver = "22w04-pre2-py"
+ver = "22w04-pre2"
 
 #本地
 from Python.config import config
 from Python.urlChecker import urlChecker
-from Python.blockData import blockData
+from Python.Statistic import statistic
 from Python.inventory import inventory
 from Python.md5 import md5
 
@@ -26,7 +26,7 @@ async def on_ready():
 async def on_message(msg):
     if msg.author.bot: return
     await urlChecker.main(msg,APIkey,APIhost)
-    await blockData.blockdata(msg,APIkey,APIhost)
+    await statistic.statistic(msg,APIkey,APIhost)
     await inventory.inventory(msg,APIkey,APIhost)
     await md5.md5(msg,APIkey,APIhost)
 
